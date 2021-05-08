@@ -29,7 +29,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ColorIntensity: 3
-    - _LineAmount: 75.86
+    - _LineAmount: 154.5
     - _Metallic: 1
     - _TimeScale: 1.5
     - __dirty: 0

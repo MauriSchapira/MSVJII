@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StrokeManager : MonoBehaviour
 {
-    
+
     public StrokeState StrokeMode { get; protected set; }
 
     private Rigidbody playerBallRB;
@@ -22,11 +22,15 @@ public class StrokeManager : MonoBehaviour
     private float strokeForceFillSpeed = 5f;
     [SerializeField] private float strikeFillSpeed;
 
-    private int fillDir = 1;
+    
 
     float MaxStrokeForce = 10f;
 
     [SerializeField] private UI ui;
+
+    [SerializeField] private GolfClub[] golfClubsAvailable;
+    private GolfClub currentGolfClub;
+    private int golfClubIndex;
 
     public enum StrokeState 
     {
@@ -40,14 +44,35 @@ public class StrokeManager : MonoBehaviour
     {
         FindPlayerBall();
         StrokeCount = 0;
-        ChangeState(StrokeState.Aiming);    
-
+        ChangeState(StrokeState.Aiming);
+        golfClubIndex = -1;
+        ChangeGolfClub();
     }
 
     private void FindPlayerBall()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         playerBallRB = go.GetComponent<Rigidbody>();    
+    }
+
+    private void ChangeGolfClub()
+    {
+        golfClubIndex++;
+
+        if (golfClubIndex >= golfClubsAvailable.Length)
+        {
+            golfClubIndex = 0;
+        }
+
+        currentGolfClub = golfClubsAvailable[golfClubIndex];
+
+        UpdateGolfClubUI();
+
+    }
+
+    private void UpdateGolfClubUI()
+    {
+        ui.UpdateGolfClub(currentGolfClub.ClubSprite, currentGolfClub.ClubName);
     }
 
   
@@ -59,6 +84,11 @@ public class StrokeManager : MonoBehaviour
 
                 StrokeAngle += Input.GetAxis("Horizontal") * angleChangeSpeed * Time.deltaTime;
 
+                if (Input.GetKeyDown(KeyCode.Tab))
+                {
+                    ChangeGolfClub();
+                }
+
                 if (Input.GetButtonUp("Fire1"))
                 {
                     ChangeState(StrokeState.ForceSet);
@@ -68,9 +98,9 @@ public class StrokeManager : MonoBehaviour
 
             case StrokeState.ForceSet:
 
-                StrokeForce += (strokeForceFillSpeed * Input.mouseScrollDelta.y * strikeFillSpeed) * Time.deltaTime;                
+                StrokeForce += (strokeForceFillSpeed * Input.mouseScrollDelta.y * strikeFillSpeed) * Time.deltaTime * currentGolfClub.GeneralStrength;                
 
-                if (StrokeForce > MaxStrokeForce)
+                if (StrokeForce > MaxStrokeForce * currentGolfClub.GeneralStrength)
                 {
                     StrokeForce = MaxStrokeForce;                   
                 }
@@ -115,10 +145,9 @@ public class StrokeManager : MonoBehaviour
 
     private void HitBall()
     {
-        Vector3 forceVec = StrokeForce * Vector3.forward;
+        Vector3 forceVec = StrokeForce * Vector3.forward + StrokeForce * Vector3.up * currentGolfClub.VerticalFactorStrength;        
         playerBallRB.AddForce(Quaternion.Euler(0, StrokeAngle, 0) * forceVec, ForceMode.Impulse);
-        StrokeForce = 0;
-        fillDir = 1;
+        StrokeForce = 0;     
         StrokeCount++;
         ui.UpdateStrokes(StrokeCount);
         ChangeState(StrokeState.Move);
@@ -139,16 +168,18 @@ public class StrokeManager : MonoBehaviour
         {
             case StrokeState.Aiming:
                 ui.EnableDisableFillImage(false);
+                ui.EnableDisableGolfClub(true);
                 EnableArrow(true);
                 break;
 
             case StrokeState.ForceSet:
-                ui.EnableDisableFillImage(true);
+                ui.EnableDisableFillImage(true);                
                 break;
 
             case StrokeState.Hit:
                 EnableArrow(false);
                 ui.EnableDisableFillImage(false);
+                ui.EnableDisableGolfClub(false);
                 HitBall();
                 break;
            
