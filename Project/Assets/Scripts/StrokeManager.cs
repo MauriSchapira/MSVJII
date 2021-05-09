@@ -13,7 +13,7 @@ public class StrokeManager : MonoBehaviour
     [SerializeField] private GameObject hitArrow;
 
     public float StrokeForce { get; protected set; }
-    public float StrokeForcePerc { get { return StrokeForce / MaxStrokeForce; } }
+    public float StrokeForcePerc { get { return StrokeForce / (MaxStrokeForce * currentGolfClub.GeneralStrength); } }
 
     public int StrokeCount { get; protected set; }
 
@@ -22,9 +22,9 @@ public class StrokeManager : MonoBehaviour
     private float strokeForceFillSpeed = 5f;
     [SerializeField] private float strikeFillSpeed;
 
-    
 
-    float MaxStrokeForce = 10f;
+
+    [SerializeField] float MaxStrokeForce = 10f;
 
     [SerializeField] private UI ui;
 
@@ -32,7 +32,7 @@ public class StrokeManager : MonoBehaviour
     private GolfClub currentGolfClub;
     private int golfClubIndex;
 
-    public enum StrokeState 
+    public enum StrokeState
     {
         Aiming,
         ForceSet,
@@ -52,7 +52,7 @@ public class StrokeManager : MonoBehaviour
     private void FindPlayerBall()
     {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
-        playerBallRB = go.GetComponent<Rigidbody>();    
+        playerBallRB = go.GetComponent<Rigidbody>();
     }
 
     private void ChangeGolfClub()
@@ -75,7 +75,7 @@ public class StrokeManager : MonoBehaviour
         ui.UpdateGolfClub(currentGolfClub.ClubSprite, currentGolfClub.ClubName);
     }
 
-  
+
     private void Update()
     {
         switch (StrokeMode)
@@ -98,11 +98,11 @@ public class StrokeManager : MonoBehaviour
 
             case StrokeState.ForceSet:
 
-                StrokeForce += (strokeForceFillSpeed * Input.mouseScrollDelta.y * strikeFillSpeed) * Time.deltaTime * currentGolfClub.GeneralStrength;                
+                StrokeForce += (strokeForceFillSpeed * Input.mouseScrollDelta.y * strikeFillSpeed) * Time.deltaTime * currentGolfClub.GeneralStrength;
 
                 if (StrokeForce > MaxStrokeForce * currentGolfClub.GeneralStrength)
                 {
-                    StrokeForce = MaxStrokeForce;                   
+                    StrokeForce = MaxStrokeForce * currentGolfClub.GeneralStrength;
                 }
                 else if (StrokeForce < 0)
                 {
@@ -118,7 +118,7 @@ public class StrokeManager : MonoBehaviour
 
                 if (Input.GetButtonUp("Fire1"))
                 {
-                    ChangeState(StrokeState.Hit);                    
+                    ChangeState(StrokeState.Hit);
                 }
 
                 break;
@@ -132,12 +132,12 @@ public class StrokeManager : MonoBehaviour
                 break;
             default:
                 break;
-        }     
+        }
     }
 
     void CheckRollingStatus()
     {
-        if(playerBallRB.IsSleeping())
+        if (playerBallRB.IsSleeping())
         {
             ChangeState(StrokeState.Aiming);
         }
@@ -145,9 +145,9 @@ public class StrokeManager : MonoBehaviour
 
     private void HitBall()
     {
-        Vector3 forceVec = StrokeForce * Vector3.forward + StrokeForce * Vector3.up * currentGolfClub.VerticalFactorStrength;        
+        Vector3 forceVec = StrokeForce * Vector3.forward + StrokeForce * Vector3.up * currentGolfClub.VerticalFactorStrength;
         playerBallRB.AddForce(Quaternion.Euler(0, StrokeAngle, 0) * forceVec, ForceMode.Impulse);
-        StrokeForce = 0;     
+        StrokeForce = 0;
         StrokeCount++;
         ui.UpdateStrokes(StrokeCount);
         ChangeState(StrokeState.Move);
@@ -158,7 +158,7 @@ public class StrokeManager : MonoBehaviour
         hitArrow.SetActive(isEnabled);
     }
 
-    
+
 
     private void ChangeState(StrokeState newState)
     {
@@ -173,7 +173,7 @@ public class StrokeManager : MonoBehaviour
                 break;
 
             case StrokeState.ForceSet:
-                ui.EnableDisableFillImage(true);                
+                ui.EnableDisableFillImage(true);
                 break;
 
             case StrokeState.Hit:
@@ -182,7 +182,7 @@ public class StrokeManager : MonoBehaviour
                 ui.EnableDisableGolfClub(false);
                 HitBall();
                 break;
-           
+
             default:
                 break;
         }

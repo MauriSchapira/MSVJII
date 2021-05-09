@@ -522,7 +522,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7772512, y: 1}
+    m_SensorSize: {x: 1.7767441, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -609,9 +609,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBlowing: 1
   particleSys: {fileID: 0}
-  windForceToUpDirection: 0
-  windDirectionTester: {x: 1, y: 0, z: 0}
-  windForce: 2.22
+  windForceToUpDirection: 10
+  windDirectionTester: {x: 1, y: 1, z: 0}
+  windForce: 10
 --- !u!1 &853298413
 GameObject:
   m_ObjectHideFlags: 0

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generalStrength: 1.8
-  verticalFactorStrength: 0.6
+  verticalFactorStrength: 0.45
   shotUncontroll: 0.15
   clubSprite: {fileID: 21300000, guid: 9510a5d8b368c5e4e950b61d837e187a, type: 3}
   clubName: Iron

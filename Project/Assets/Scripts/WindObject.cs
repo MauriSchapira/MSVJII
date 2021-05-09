@@ -4,15 +4,51 @@ using UnityEngine;
 
 public class WindObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private bool isBlowing;
+    public Vector3 WindDirection
     {
-        
+        get
+        {
+            return windDirectionTester;
+        }
+        set
+        {
+            WindDirection = value;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private ParticleSystem particleSys;
+    public float WindForce => windForce;
+
+    [SerializeField] private float windForceToUpDirection;
+
+    [SerializeField] private Vector3 windDirectionTester;
+    [SerializeField] private float windForce;
+
+    public void StopOrStartBlowing(bool newState)
     {
-        
+        isBlowing = newState;
+
+    }
+
+
+
+
+    //Wind from XZ plane
+    private void OnTriggerStay(Collider other)
+    {
+        if (!isBlowing) return;
+
+        other.attachedRigidbody.AddForce(WindDirection * windForce, ForceMode.Force);
+
+    }
+
+
+    //Separate impulse code
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!isBlowing) return;
+        other.attachedRigidbody.AddForce(WindDirection.y * Vector3.up * windForceToUpDirection, ForceMode.Impulse);
     }
 }
