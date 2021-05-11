@@ -10,7 +10,9 @@ public class OutOfBounds : MonoBehaviour
     {
       if (other.CompareTag("Player"))
         {
-            other.GetComponent<Ball>().ToKnownGoodPosition();
+            Ball ball = other.GetComponent<Ball>();
+            if (ball.Dissapearing) return;
+            ball.ToKnownGoodPosition();
         }
     }
 

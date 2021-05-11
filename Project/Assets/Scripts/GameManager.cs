@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
+    public delegate void SetGoodPosition(int camera, Vector3 position);
+    public delegate void ReturnToGoodPosition(int camera, Vector3 position);
 
+    public SetGoodPosition OnSetGoodPosition;
+    public ReturnToGoodPosition OnReturnToGoodPosition;
 
 
     private void Awake()
@@ -21,7 +25,16 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    
+    public void CallSetGoodPosition()
+    {
 
+    }
+
+    public void CallReturnToGoodPosition()
+    {
+
+    }
 
     private void MakeSingleton()
     {
