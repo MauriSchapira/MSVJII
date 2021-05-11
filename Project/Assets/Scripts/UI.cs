@@ -11,6 +11,7 @@ public class UI : MonoBehaviour
     [SerializeField] private Text golfClubEquippedName;
     [SerializeField] private Image golfClubEquippedImage;
     [SerializeField] private GameObject golfClub;
+    [SerializeField] private GameObject arrow;
 
     
 
@@ -25,6 +26,15 @@ public class UI : MonoBehaviour
        
     }
 
+    public void ChangeArrowAngle(float angle)
+    {
+       arrow.transform.rotation = Quaternion.Euler(0, 0, -angle);
+    }
+
+    public void EnableDisableArrow (bool isEnabled)
+    {
+        arrow.SetActive(isEnabled);
+    }
     public void EnableDisableGolfClub(bool newState)
     {
         golfClub.SetActive(newState);

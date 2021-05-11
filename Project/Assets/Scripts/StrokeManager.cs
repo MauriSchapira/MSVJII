@@ -7,10 +7,26 @@ public class StrokeManager : MonoBehaviour
 
     public StrokeState StrokeMode { get; protected set; }
 
-    private Rigidbody playerBallRB;
-    public float StrokeAngle { get; protected set; }
+    private Ball ball;
 
-    [SerializeField] private GameObject hitArrow;
+    private Rigidbody playerBallRB;
+    //public float StrokeAngle { get; protected set; }
+    private float strokeAngle;
+    public float StrokeAngle
+    {
+        get
+        {
+            return strokeAngle;
+        }
+        protected set
+        {
+            strokeAngle = value;
+            ui.ChangeArrowAngle(strokeAngle);
+        }
+        
+    }
+
+    /*[SerializeField] private GameObject hitArrow;*/
 
     public float StrokeForce { get; protected set; }
     public float StrokeForcePerc { get { return StrokeForce / (MaxStrokeForce * currentGolfClub.GeneralStrength); } }
@@ -44,6 +60,7 @@ public class StrokeManager : MonoBehaviour
     {
         FindPlayerBall();
         StrokeCount = 0;
+        StrokeAngle = 180;
         ChangeState(StrokeState.Aiming);
         golfClubIndex = -1;
         ChangeGolfClub();
@@ -51,7 +68,9 @@ public class StrokeManager : MonoBehaviour
 
     private void FindPlayerBall()
     {
+
         GameObject go = GameObject.FindGameObjectWithTag("Player");
+        ball = go.GetComponent <Ball>();
         playerBallRB = go.GetComponent<Rigidbody>();
     }
 
@@ -139,6 +158,7 @@ public class StrokeManager : MonoBehaviour
     {
         if (playerBallRB.IsSleeping())
         {
+            ball.SetKnownGoodPosition(ball.transform.position);
             ChangeState(StrokeState.Aiming);
         }
     }
@@ -155,7 +175,8 @@ public class StrokeManager : MonoBehaviour
 
     private void EnableArrow(bool isEnabled)
     {
-        hitArrow.SetActive(isEnabled);
+        //hitArrow.SetActive(isEnabled);
+        ui.EnableDisableArrow(isEnabled);
     }
 
 
