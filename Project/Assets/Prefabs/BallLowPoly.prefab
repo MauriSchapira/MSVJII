@@ -110,6 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 0}
+  timesToDissapearBall: 10
+  timeToResetPosition: 0.2
+  reappearGroundOffset: 0.2
+  shrinkerValue: 0.78
 --- !u!135 &1394261622190612726
 SphereCollider:
   m_ObjectHideFlags: 0
