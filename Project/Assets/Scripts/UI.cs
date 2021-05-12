@@ -26,9 +26,9 @@ public class UI : MonoBehaviour
        
     }
 
-    public void ChangeArrowAngle(float angle)
+    public void ChangeArrowAngle(float angle, float cameraOffsetAngle)
     {
-       arrow.transform.rotation = Quaternion.Euler(0, 0, -angle);
+       arrow.transform.rotation = Quaternion.Euler(0, 0, -angle + cameraOffsetAngle + 180);
     }
 
     public void EnableDisableArrow (bool isEnabled)

@@ -8,7 +8,7 @@ public class StrokeManager : MonoBehaviour
     public StrokeState StrokeMode { get; protected set; }
 
     private Ball ball;
-
+    
     private Rigidbody playerBallRB;
     //public float StrokeAngle { get; protected set; }
     private float strokeAngle;
@@ -21,7 +21,7 @@ public class StrokeManager : MonoBehaviour
         protected set
         {
             strokeAngle = value;
-            ui.ChangeArrowAngle(strokeAngle);
+            ui.ChangeArrowAngle(strokeAngle,Camera.main.transform.rotation.eulerAngles.y);
         }
         
     }
@@ -58,7 +58,7 @@ public class StrokeManager : MonoBehaviour
 
     void Start()
     {
-        FindPlayerBall();
+        FindPlayerBall();       
         StrokeCount = 0;
         StrokeAngle = 180;
         ChangeState(StrokeState.Aiming);

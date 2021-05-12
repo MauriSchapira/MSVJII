@@ -18,8 +18,8 @@ TagManager:
   - Ball
   - Walls
   - TriggerAreas
-  - 
-  - 
+  - Obstacle
+  - Floor
   - 
   - 
   - 
