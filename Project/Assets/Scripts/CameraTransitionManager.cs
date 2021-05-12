@@ -38,7 +38,7 @@ public class CameraTransitionManager : MonoBehaviour
     {
         ChangeToAerealCamera();
     }
-
+        
     private void ChangeToAerealCamera()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
