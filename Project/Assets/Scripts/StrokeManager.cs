@@ -64,6 +64,7 @@ public class StrokeManager : MonoBehaviour
         ChangeState(StrokeState.Aiming);
         golfClubIndex = -1;
         ChangeGolfClub();
+        GameManager.instance.StrokeManagerRef(this);
     }
 
     private void FindPlayerBall()

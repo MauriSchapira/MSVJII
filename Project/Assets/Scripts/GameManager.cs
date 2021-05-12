@@ -11,6 +11,12 @@ public class GameManager : MonoBehaviour
     public delegate void SetGoodPosition(int camera, Vector3 position);
     public delegate void ReturnToGoodPosition(int camera, Vector3 position);
 
+    public LevelManager lvlManager;
+    public StrokeManager strokeManager;
+    public Goal goal;
+
+   
+
     public SetGoodPosition OnSetGoodPosition;
     public ReturnToGoodPosition OnReturnToGoodPosition;
 
@@ -19,22 +25,36 @@ public class GameManager : MonoBehaviour
     {
         MakeSingleton();
     }
+    private void Start()
+    {
+        lvlManager.OnNextLevel += OnNextLevelHandler;
+    }
+    public void StrokeManagerRef(StrokeManager strokeManagerReference)
+    {
+        strokeManager = strokeManagerReference;
+    }
+    public void GoalReference (Goal goal)
+    {
+        this.goal = goal;
+        goal.OnWin += lvlManager.OnWonLevelHandler;
+    }
 
+    private void OnNextLevelHandler(string levelToLoad)
+    {
+        goal.OnWin -= lvlManager.OnWonLevelHandler;
+        LoadScene(levelToLoad);
+    }
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void LoadScene(string sceneToLoad)
+    {
+        SceneManager.LoadSceneAsync(sceneToLoad);
     }
     
-    public void CallSetGoodPosition()
-    {
-
-    }
-
-    public void CallReturnToGoodPosition()
-    {
-
-    }
 
     private void MakeSingleton()
     {
@@ -51,16 +71,4 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }

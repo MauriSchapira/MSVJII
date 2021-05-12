@@ -6,13 +6,19 @@ using UnityEngine.SceneManagement;
 public class Goal : MonoBehaviour
 {
 
-    [SerializeField] private string sceneToReload;
+   
+
     [SerializeField] private float timeToWinStart;
+    public delegate void Win();
+    public Win OnWin;
+
     private float timeToWin;
+
 
     private void Start()
     {
         ResetTimer();
+        GameManager.instance.GoalReference(this);
     }
 
     private void ResetTimer()
@@ -29,25 +35,23 @@ public class Goal : MonoBehaviour
 
             if (timeToWin <= 0)
             {
-                StartCoroutine(Win());
+                TriggerWin();
             }
         }    
     }
+
+    private void TriggerWin()
+    {
+        print("You win!!");
+        OnWin?.Invoke();
+    }
+
 
     private void OnTriggerExit(Collider other)
     {
         ResetTimer();
     }
 
-
-    private IEnumerator Win()
-    {
-        print("You win!!");
-
-        yield return new WaitForSecondsRealtime(2);
-
-        SceneManager.LoadScene(sceneToReload);
-    }
 
 
 
