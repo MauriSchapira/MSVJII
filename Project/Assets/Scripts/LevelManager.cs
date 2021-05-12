@@ -33,12 +33,8 @@ public class LevelManager: MonoBehaviour
 
 
     public void SetScoreForLevel(int level, int score)
-    {
-      
+    {      
         levelScores[level - 1] = score;
-
-        print($"Score for level {level} was {score}");
-        print("Pos 0 is " + levelScores[0]);
     }
 
     public int[] RecallScores()

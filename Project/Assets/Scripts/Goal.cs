@@ -11,6 +11,7 @@ public class Goal : MonoBehaviour
     [SerializeField] private float timeToWinStart;
     public delegate void Win();
     public Win OnWin;
+    private SphereCollider sphereColl;
 
     private float timeToWin;
 
@@ -18,6 +19,7 @@ public class Goal : MonoBehaviour
     private void Start()
     {
         ResetTimer();
+        sphereColl = GetComponent<SphereCollider>();
         GameManager.instance.GoalReference(this);
     }
 
@@ -42,8 +44,9 @@ public class Goal : MonoBehaviour
 
     private void TriggerWin()
     {
-        print("You win!!");
+        sphereColl.enabled = false;
         OnWin?.Invoke();
+
     }
 
 

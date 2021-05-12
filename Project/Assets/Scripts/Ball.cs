@@ -45,7 +45,7 @@ public class Ball : MonoBehaviour
     {
         lastKnownGoodPosition = pos;
         camTransManager.ChangeLastKnownGoodCamera();
-        print("last known good position set as " + lastKnownGoodPosition);
+
     }
 
     public void ToKnownGoodPosition()

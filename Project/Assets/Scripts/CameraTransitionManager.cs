@@ -19,7 +19,7 @@ public class CameraTransitionManager : MonoBehaviour
 
 
         if (newCameraIndex == selectedCameraIndex) return;
-        print("Change camera");
+
         cameras[newCameraIndex].SetActive(true);
         cameras[selectedCameraIndex].SetActive(false);
         selectedCameraIndex = newCameraIndex;

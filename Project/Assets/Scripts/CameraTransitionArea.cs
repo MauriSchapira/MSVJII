@@ -17,6 +17,6 @@ public class CameraTransitionArea : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         camTransManager.ChangeCamera(cameraIndex);
-        print("Triggered");
+
     }
 }
