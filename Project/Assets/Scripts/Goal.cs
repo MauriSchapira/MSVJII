@@ -12,6 +12,7 @@ public class Goal : MonoBehaviour
     public delegate void Win();
     public Win OnWin;
     private SphereCollider sphereColl;
+    public AudioSource winMusic;
 
     private float timeToWin;
 
@@ -21,6 +22,7 @@ public class Goal : MonoBehaviour
         ResetTimer();
         sphereColl = GetComponent<SphereCollider>();
         GameManager.instance.GoalReference(this);
+        winMusic = GetComponent<AudioSource>();
     }
 
     private void ResetTimer()
@@ -33,6 +35,7 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            winMusic.Play();
             timeToWin -= Time.deltaTime;
 
             if (timeToWin <= 0)
@@ -54,8 +57,5 @@ public class Goal : MonoBehaviour
     {
         ResetTimer();
     }
-
-
-
 
 }
