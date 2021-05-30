@@ -15,7 +15,7 @@ public class LevelManager: MonoBehaviour
 
 
     private void Start()
-    {
+    {    
         levelScores = new int[totalLevels];
     }
 
