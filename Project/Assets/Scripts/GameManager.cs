@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
     public void StrokeManagerRef(StrokeManager strokeManagerReference)
     {
         strokeManager = strokeManagerReference;
+        strokeManager.OnMaxStrokesReached += OnMaxStrokesReachedHandler;
+    }
+
+    private void OnMaxStrokesReachedHandler()
+    {
+        lvlManager.OnWonLevelHandler();
     }
     public void GoalReference (Goal goal)
     {

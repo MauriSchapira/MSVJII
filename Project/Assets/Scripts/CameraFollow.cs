@@ -17,9 +17,7 @@ public class CameraFollow : MonoBehaviour
 
 
     private void FixedUpdate()
-    {
-        //transform.rotation = Quaternion.identity;
-
+    {     
         Vector3 newPos = new Vector3(ballTrans.position.x, initialDistanceToTarget.y, ballTrans.position.z);
         Vector3 oldPos = ballTrans.position + initialDistanceToTarget;
 

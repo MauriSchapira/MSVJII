@@ -7,10 +7,15 @@ public class StrokeManager : MonoBehaviour
 
     public StrokeState StrokeMode { get; protected set; }
 
+    public delegate void MaxStrokesReached();
+    public MaxStrokesReached OnMaxStrokesReached;
+
     private Ball ball;
+
+    [SerializeField] private int maxStrokes;
     
     private Rigidbody playerBallRB;
-    //public float StrokeAngle { get; protected set; }
+  
     private float strokeAngle;
     public float StrokeAngle
     {
@@ -101,6 +106,11 @@ public class StrokeManager : MonoBehaviour
         switch (StrokeMode)
         {
             case StrokeState.Aiming:
+
+                if (StrokeCount >= maxStrokes)
+                {
+                    OnMaxStrokesReached?.Invoke();
+                }
 
                 StrokeAngle += Input.GetAxis("Horizontal") * angleChangeSpeed * Time.deltaTime;
 
