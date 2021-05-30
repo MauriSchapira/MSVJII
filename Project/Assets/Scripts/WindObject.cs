@@ -29,10 +29,12 @@ public class WindObject : MonoBehaviour
     public void StopOrStartBlowing(bool newState)
     {
         isBlowing = newState;
-
     }
 
-
+    private void Start()
+    {
+        print(WindDirection + " is wind direction");
+    }
 
 
     //Wind from XZ plane
@@ -40,8 +42,7 @@ public class WindObject : MonoBehaviour
     {
         if (!isBlowing) return;
 
-        other.attachedRigidbody.AddForce(WindDirection * windForce, ForceMode.Force);
-
+        other.attachedRigidbody.AddForce(WindDirection.x * transform.right * windForce + WindDirection.z * transform.forward * windForce, ForceMode.Force);
     }
 
 

@@ -35,7 +35,7 @@ public class Goal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            winMusic.Play();
+            //winMusic.Play();
             timeToWin -= Time.deltaTime;
 
             if (timeToWin <= 0)
