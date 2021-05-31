@@ -124,7 +124,7 @@ Shader "GrayScaled"
 }
 /*ASEBEGIN
 Version=18900
-0;0;1920;1019;1225.173;682.1033;1.3;True;False
+0;0;1920;1019;954.4583;687.6121;1.3;True;False
 Node;AmplifyShaderEditor.TemplateShaderPropertyNode;1;-601.6409,-110.2351;Inherit;False;0;0;_MainTex;Shader;False;0;5;SAMPLER2D;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SamplerNode;4;-416.5726,-119.2033;Inherit;True;Property;_TextureSample0;Texture Sample 0;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.TFHCGrayscale;2;-93.52571,-116.9668;Inherit;False;0;1;0;FLOAT3;0,0,0;False;1;FLOAT;0
@@ -146,4 +146,4 @@ WireConnection;8;1;7;0
 WireConnection;8;2;10;0
 WireConnection;0;0;8;0
 ASEEND*/
-//CHKSM=B9A579E66A552B89EB61CAC683FB267D0E3CBA9B
+//CHKSM=45B769D6E301E877D91FAA72C39DE3548991CAAA

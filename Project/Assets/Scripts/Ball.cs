@@ -31,7 +31,9 @@ public class Ball : MonoBehaviour
     {
       
         originalScale = transform.localScale;
-        transform.position = GameObject.FindGameObjectWithTag("BallStartPosition").transform.position;
+        GameObject ballStartPos = GameObject.FindGameObjectWithTag("BallStartPosition");
+        transform.position = ballStartPos.transform.position;
+        Destroy(ballStartPos);       
         rb = GetComponent<Rigidbody>();
         rb.sleepThreshold = 0.5f;
         rb.maxAngularVelocity = Mathf.Infinity;
