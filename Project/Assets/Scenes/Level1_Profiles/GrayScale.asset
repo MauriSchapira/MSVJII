@@ -65,10 +65,10 @@ MonoBehaviour:
     value: 1
   _StepLevel:
     overrideState: 1
-    value: 0.31
+    value: 0.17
   _GrayBlackBalance:
     overrideState: 1
-    value: 0
+    value: 2.2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
     value: 1
   _PixelsX:
     overrideState: 1
-    value: 64
+    value: 128
   _PixelsY:
     overrideState: 1
-    value: 64
+    value: 128
