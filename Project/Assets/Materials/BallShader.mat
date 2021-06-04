@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _2ndBorderIntensity: 0.48
+    - _2ndBorderIntensity: 0.541
     - _FirstBorder: 0.33
     - _Float0: 1
     - _FresnelBias: 0
@@ -44,7 +44,7 @@ Material:
     - _FresnelScale: 0.5477904
     - _Lines: 4
     - _Metallic: 0
-    - _NoiseAbundance: 0.09
+    - _NoiseAbundance: 0.143
     - _NoiseTiling: 23.09
     - _ScaleAndOffset: 0.66
     - _SecondBorder: 0.38
@@ -52,7 +52,7 @@ Material:
     - _Shade2Intesnity: 0.16732925
     - _Shade3Intensity: 0.31
     - _Smoothness: 0.611
-    - _Step1Border: 0.57
+    - _Step1Border: 0.48
     - _Step2Border: 0.83
     - __dirty: 0
     m_Colors:
