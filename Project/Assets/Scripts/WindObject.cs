@@ -33,7 +33,7 @@ public class WindObject : MonoBehaviour
 
     private void Start()
     {
-        print(WindDirection + " is wind direction");
+        //print(WindDirection + " is wind direction");
     }
 
 

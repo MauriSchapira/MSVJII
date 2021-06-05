@@ -358,7 +358,7 @@ RectTransform:
   - {fileID: 1304285448}
   - {fileID: 1589691841}
   m_Father: {fileID: 678462831}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1024,10 +1024,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 957915455}
   - {fileID: 183031522}
   - {fileID: 2090538795}
   - {fileID: 1022685098}
-  - {fileID: 957915455}
   - {fileID: 290249495}
   m_Father: {fileID: 1548077645}
   m_RootOrder: 0
@@ -1401,7 +1401,7 @@ RectTransform:
   - {fileID: 361608127}
   - {fileID: 603121339}
   m_Father: {fileID: 678462831}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.31712502, y: 0.17470366}
   m_AnchorMax: {x: 0.68129164, y: 0.8231482}
@@ -1597,7 +1597,7 @@ RectTransform:
   m_Children:
   - {fileID: 1812956636}
   m_Father: {fileID: 678462831}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37, y: 0.017629629}
   m_AnchorMax: {x: 0.63000005, y: 0.10948148}
@@ -1905,7 +1905,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Aca va el titulo
+  m_text: Golfealo!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1974,10 +1974,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1352758228}
-    characterCount: 16
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -2197,7 +2197,19 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Aca se escriben los controles/guia de juego
+  m_text: 'W/A/S/D | Arrows => Cambia el angulo de disparo.
+
+    LeftMouseButton => Confirma el angulo y muestra selector de fuerza; Se aprieta
+    devuelta para confirmar fuerza y golpear la pelota.
+
+    RightMouseButton => Permite controlar la camara en una orbita alrededor de la
+    pelota; Permite cancelar la seleccion del angulo.
+
+    MouseWheelUp/Down => Permite aumentar o reducir (respectivamente) la fuerza que
+    se le va a aplicar a la pelota.
+
+    Tab => Permite cambiar entre los diferentes palos disponibles para pegarle a la
+    pelota.
 
 '
   m_isRightToLeft: 0
@@ -2268,12 +2280,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1589691842}
-    characterCount: 44
+    characterCount: 508
     spriteCount: 0
-    spaceCount: 7
-    wordCount: 8
+    spaceCount: 80
+    wordCount: 78
     linkCount: 0
-    lineCount: 1
+    lineCount: 9
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -2486,7 +2498,7 @@ RectTransform:
   - {fileID: 38747612}
   - {fileID: 2121995874}
   m_Father: {fileID: 678462831}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2707,7 +2719,9 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Aca van los participantes, profesores, fecha y materia
+  m_text: "Integrantes\\n\nCancheff Tomas\r\nPerez Maximiliano\r\nSchapira Mauricio\r\nZambrano
+    Ignacio\n\\nProfesores\\n\nBarcelo Luis Francisco\nLarreteguy Mariano\n\\nHecho
+    para la materia\\nModelos y Simulacion de Videojuegos II 1\xB0C2021"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2776,12 +2790,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2121995875}
-    characterCount: 54
+    characterCount: 208
     spriteCount: 0
-    spaceCount: 7
-    wordCount: 8
+    spaceCount: 29
+    wordCount: 27
     linkCount: 0
-    lineCount: 1
+    lineCount: 14
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0

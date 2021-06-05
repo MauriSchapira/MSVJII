@@ -46,7 +46,7 @@ public class Ball : MonoBehaviour
     public void SetKnownGoodPosition(Vector3 pos)
     {
         lastKnownGoodPosition = pos;
-        camTransManager.ChangeLastKnownGoodCamera();
+        //camTransManager.ChangeLastKnownGoodCamera();
 
     }
 
@@ -68,7 +68,7 @@ public class Ball : MonoBehaviour
         ResetVelocities();
         transform.position = lastKnownGoodPosition + Vector3.up * reappearGroundOffset;        
         transform.localScale = originalScale;
-        camTransManager.ToLastKnownGoodCamera();
+        //camTransManager.ToLastKnownGoodCamera();
         Dissapearing = false;
     }
 

@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public enum ButtonSwitch
 {
@@ -78,7 +80,7 @@ public class MainMenuManager : MonoBehaviour
         switch (aux)
         {
            case ButtonSwitch.PlayButton:
-               print("Play"); // Cambiar a accion real
+               SceneManager.LoadScene("Level1");
                return;
            case ButtonSwitch.HelpButton:
                mainWindow.SetActive(false);

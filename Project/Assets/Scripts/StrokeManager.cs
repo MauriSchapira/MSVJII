@@ -1,10 +1,14 @@
-﻿using System.Collections;
+using System.Net.WebSockets;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class StrokeManager : MonoBehaviour
 {
+    public enum StartingAngle { ZForward = 0, XForward = 90, ZBackward = 180, XBackward = 270 };
 
+    [Tooltip("A que direccion apunta al principio")]
+    public StartingAngle startingAngle; 
     public StrokeState StrokeMode { get; protected set; }
 
     public delegate void MaxStrokesReached();
@@ -65,7 +69,7 @@ public class StrokeManager : MonoBehaviour
     {
         FindPlayerBall();       
         StrokeCount = 0;
-        StrokeAngle = 180;
+        StrokeAngle = (float)startingAngle;
         ChangeState(StrokeState.Aiming);
         golfClubIndex = -1;
         ChangeGolfClub();
