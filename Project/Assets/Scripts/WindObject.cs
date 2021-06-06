@@ -5,7 +5,6 @@ using UnityEngine;
 public class WindObject : MonoBehaviour
 {
 
-    [SerializeField] private bool isBlowing;
     public Vector3 WindDirection
     {
         get
@@ -18,29 +17,76 @@ public class WindObject : MonoBehaviour
         }
     }
 
-    [SerializeField] private ParticleSystem particleSys;
+    private bool isBlowing;
+
+    [SerializeField] private float timeToStopBlowing;
+    [SerializeField] private float timeToStartBlowing;
+    private float _timeToStartBlowing;
+    private float _timeToStopBlowing;
+
+    [SerializeField] private GameObject particleSys1;
+    [SerializeField] private GameObject particleSys2;
     public float WindForce => windForce;
 
     [SerializeField] private float windForceToUpDirection;
 
     [SerializeField] private Vector3 windDirectionTester;
     [SerializeField] private float windForce;
-
-    public void StopOrStartBlowing(bool newState)
-    {
-        isBlowing = newState;
-    }
+    private BoxCollider windCollider;
 
     private void Start()
     {
-        //print(WindDirection + " is wind direction");
+        windCollider = GetComponent<BoxCollider>();
+        _timeToStopBlowing = timeToStopBlowing;
+        _timeToStartBlowing = timeToStartBlowing;
     }
+
+    private void Update()
+    {
+        //While blowing
+
+        if (isBlowing)
+        {
+            _timeToStopBlowing -= Time.deltaTime;
+
+            if (_timeToStopBlowing <= 0)
+            {
+                StartBlowing(false);
+            }
+            return;
+        }
+
+
+        //Until it starts to blow
+        _timeToStartBlowing -= Time.deltaTime;
+
+        if (_timeToStartBlowing <= 0)
+        {
+            StartBlowing(true);            
+        }        
+    }
+
+
+
+
+
+
+    public void StartBlowing(bool newState)
+    {
+        //Change windCollider state. If active => inactive, if inactive => active
+        isBlowing = newState;
+        windCollider.enabled = newState;
+
+        //Activate or deactive wind particles
+        particleSys1.SetActive(newState);
+        particleSys2.SetActive(newState);
+    }
+
 
 
     //Wind from XZ plane
     private void OnTriggerStay(Collider other)
     {
-        if (!isBlowing) return;
 
         other.attachedRigidbody.AddForce(WindDirection.x * transform.right * windForce + WindDirection.z * transform.forward * windForce, ForceMode.Force);
     }
@@ -49,7 +95,6 @@ public class WindObject : MonoBehaviour
     //Separate impulse code
     private void OnTriggerEnter(Collider other)
     {
-        if (!isBlowing) return;
         other.attachedRigidbody.AddForce(WindDirection.y * Vector3.up * windForceToUpDirection, ForceMode.Impulse);
     }
 }
