@@ -3,19 +3,21 @@ using System.Collections;
  
 [AddComponentMenu("Camera-Control/Mouse Orbit with zoom")]
 public class Camera2 : MonoBehaviour {
+
+    [SerializeField] private Transform target;
+    [SerializeField] private float distance = 5.0f;
+    [SerializeField] private float xSpeed = 120.0f;
+    [SerializeField] private float ySpeed = 120.0f;
+
+    [SerializeField] private float yMinLimit = -20f;
+    [SerializeField] private float yMaxLimit = 80f;
+
+    [SerializeField] private float distanceMin = .5f;
+    [SerializeField] private float distanceMax = 15f;
+
+    [SerializeField] private GameObject aerealCamera;
  
-    public Transform target;
-    public float distance = 5.0f;
-    public float xSpeed = 120.0f;
-    public float ySpeed = 120.0f;
- 
-    public float yMinLimit = -20f;
-    public float yMaxLimit = 80f;
- 
-    public float distanceMin = .5f;
-    public float distanceMax = 15f;
- 
-    private Rigidbody rigidbody;
+    private Rigidbody _rb;
     private Vector3 _cameraOffset;
     [Tooltip("The smooth factor when the camera follows a target object")]
     [Range(0.2f, 1f)]
@@ -33,15 +35,20 @@ public class Camera2 : MonoBehaviour {
         x = angles.y;
         y = angles.x;
  
-        rigidbody = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
  
         // Make the rigid body not change rotation
-        if (rigidbody != null)
+        if (_rb != null)
         {
-            rigidbody.freezeRotation = true;
+            _rb.freezeRotation = true;
         }
     }
- 
+
+    private void Update()
+    {
+        CheckChangeToAerealCamera();
+    }
+
     void LateUpdate () 
     {
         // If target
@@ -75,7 +82,19 @@ public class Camera2 : MonoBehaviour {
             transform.LookAt(target);
         }
     }
- 
+
+    private void CheckChangeToAerealCamera()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            aerealCamera.SetActive(true);
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            aerealCamera.SetActive(false);
+        }
+    }
     public static float ClampAngle(float angle, float min, float max)
     {
         if (angle < -360F)
