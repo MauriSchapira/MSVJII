@@ -580,6 +580,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Course01
       objectReference: {fileID: 0}
+    - target: {fileID: 4735556846931346934, guid: 7ba10178bd0432f479ca236350b393a4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4735556846931346935, guid: 7ba10178bd0432f479ca236350b393a4,
         type: 3}
       propertyPath: m_LocalPosition.x
