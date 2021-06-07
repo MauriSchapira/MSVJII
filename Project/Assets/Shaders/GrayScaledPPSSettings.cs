@@ -13,6 +13,8 @@ public sealed class GrayScaledPPSSettings : PostProcessEffectSettings
 	public FloatParameter _StepLevel = new FloatParameter { value = 0f };
 	[Tooltip( "GrayBlackBalance" )]
 	public FloatParameter _GrayBlackBalance = new FloatParameter { value = 0f };
+	[Tooltip( "Tint" )]
+	public ColorParameter _Tint = new ColorParameter { value = new Color(0f,0f,0f,0f) };
 }
 
 public sealed class GrayScaledPPSRenderer : PostProcessEffectRenderer<GrayScaledPPSSettings>
@@ -22,6 +24,7 @@ public sealed class GrayScaledPPSRenderer : PostProcessEffectRenderer<GrayScaled
 		var sheet = context.propertySheets.Get( Shader.Find( "GrayScaled" ) );
 		sheet.properties.SetFloat( "_StepLevel", settings._StepLevel );
 		sheet.properties.SetFloat( "_GrayBlackBalance", settings._GrayBlackBalance );
+		sheet.properties.SetColor( "_Tint", settings._Tint );
 		context.command.BlitFullscreenTriangle( context.source, context.destination, sheet, 0 );
 	}
 }
