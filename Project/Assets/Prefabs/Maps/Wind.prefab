@@ -61,8 +61,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeToStopBlowing: 4
   timeToStartBlowing: 6
-  particleSys1: {fileID: 8966175309539800844}
-  particleSys2: {fileID: 8966175308786378626}
+  particleSys1: {fileID: 8966175309539800849}
+  particleSys2: {fileID: 8966175308786378631}
   windForceToUpDirection: 0
   windDirectionTester: {x: 1, y: 0, z: 0}
   windForce: 2.5
