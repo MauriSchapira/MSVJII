@@ -7,14 +7,17 @@ Shader "FlagShader"
 		_LinesAmount("LinesAmount", Float) = 0
 		_WaveIntensity("WaveIntensity", Range( 0 , 1)) = 0.5
 		[HDR]_Tint("Tint", Color) = (0,0,0,0)
+		_NoiseScale("NoiseScale", Float) = 29.4
 		_Metallic("Metallic", Float) = 0
 		_Smoothness("Smoothness", Float) = 0
+		_EmissionIntensity("EmissionIntensity", Float) = 0
+		_NoiseTimeScale("NoiseTimeScale", Float) = 0
 		[HideInInspector] __dirty( "", Int ) = 1
 	}
 
 	SubShader
 	{
-		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" }
+		Tags{ "RenderType" = "Opaque"  "Queue" = "Geometry+0" "IsEmissive" = "true"  }
 		Cull Back
 		CGPROGRAM
 		#include "UnityShaderVariables.cginc"
@@ -26,8 +29,11 @@ Shader "FlagShader"
 		};
 
 		uniform float _LinesAmount;
+		uniform float _NoiseTimeScale;
+		uniform float _NoiseScale;
 		uniform float _WaveIntensity;
 		uniform float4 _Tint;
+		uniform float _EmissionIntensity;
 		uniform float _Metallic;
 		uniform float _Smoothness;
 
@@ -78,15 +84,17 @@ Shader "FlagShader"
 			UNITY_INITIALIZE_OUTPUT( Input, o );
 			float mulTime2 = _Time.y * 2.0;
 			float3 ase_vertex3Pos = v.vertex.xyz;
-			float mulTime65 = _Time.y * 0.05;
-			float simpleNoise56 = SimpleNoise( ( ase_vertex3Pos + mulTime65 ).xy*29.4 );
+			float mulTime65 = _Time.y * _NoiseTimeScale;
+			float simpleNoise56 = SimpleNoise( ( ase_vertex3Pos + mulTime65 ).xy*_NoiseScale );
 			v.vertex.xyz += ( float3(0,0,1) * sin( ( mulTime2 + ( ase_vertex3Pos.x * _LinesAmount ) ) ) * saturate( ( 1.0 - step( (ase_vertex3Pos).x , 0.05 ) ) ) * simpleNoise56 * _WaveIntensity );
 			v.vertex.w = 1;
 		}
 
 		void surf( Input i , inout SurfaceOutputStandard o )
 		{
-			o.Albedo = _Tint.rgb;
+			float4 temp_output_70_0 = _Tint;
+			o.Albedo = temp_output_70_0.rgb;
+			o.Emission = ( _Tint * _EmissionIntensity ).rgb;
 			o.Metallic = _Metallic;
 			o.Smoothness = _Smoothness;
 			o.Alpha = 1;
@@ -99,52 +107,59 @@ Shader "FlagShader"
 }
 /*ASEBEGIN
 Version=18900
-25;475;1920;1019;485.7455;34.37676;1.3;True;False
+0;0;1920;1019;1665.345;-114.8103;1;True;False
 Node;AmplifyShaderEditor.PosVertexDataNode;7;-2241.451,110.2917;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;3;-2068.63,-23.80273;Inherit;False;Constant;_Float0;Float 0;0;0;Create;True;0;0;0;False;0;False;2;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;9;-2085.619,329.869;Inherit;False;Property;_LinesAmount;LinesAmount;0;0;Create;True;0;0;0;False;0;False;0;26.54;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.ComponentMaskNode;13;-1898.616,121.9632;Inherit;True;True;False;False;True;1;0;FLOAT3;0,0,0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;75;-1360.345,667.8103;Inherit;False;Property;_NoiseTimeScale;NoiseTimeScale;7;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;9;-2085.619,329.869;Inherit;False;Property;_LinesAmount;LinesAmount;0;0;Create;True;0;0;0;False;0;False;0;52.37;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;3;-2068.63,-23.80273;Inherit;False;Constant;_Float0;Float 0;0;0;Create;True;0;0;0;False;0;False;2;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;8;-1843.05,315.6956;Inherit;True;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleTimeNode;2;-1910.63,-17.80273;Inherit;False;1;0;FLOAT;1;False;1;FLOAT;0
 Node;AmplifyShaderEditor.StepOpNode;14;-1460.115,198.4632;Inherit;True;2;0;FLOAT;0;False;1;FLOAT;0.05;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleTimeNode;65;-1234.063,605.7192;Inherit;False;1;0;FLOAT;0.05;False;1;FLOAT;0
 Node;AmplifyShaderEditor.PosVertexDataNode;64;-1247.436,457.6681;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.OneMinusNode;15;-1204.622,192.9738;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleTimeNode;65;-1234.063,605.7192;Inherit;False;1;0;FLOAT;0.05;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;11;-1577.73,3.863161;Inherit;False;2;2;0;FLOAT;0;False;1;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;59;-1182.231,683.6133;Inherit;False;Constant;_Float2;Float 2;2;0;Create;True;0;0;0;False;0;False;29.4;0;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleAddOpNode;66;-964.3523,518.6401;Inherit;False;2;2;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;1;FLOAT3;0
+Node;AmplifyShaderEditor.OneMinusNode;15;-1204.622,192.9738;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;59;-983.231,686.6133;Inherit;False;Property;_NoiseScale;NoiseScale;3;0;Create;True;0;0;0;False;0;False;29.4;29.4;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;74;259.1545,55.32375;Inherit;False;Property;_EmissionIntensity;EmissionIntensity;6;0;Create;True;0;0;0;False;0;False;0;1;0;0;0;1;FLOAT;0
 Node;AmplifyShaderEditor.Vector3Node;16;-840.8078,-318.4553;Inherit;False;Constant;_Vector0;Vector 0;1;0;Create;True;0;0;0;False;0;False;0,0,1;0,0,0;0;4;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3
-Node;AmplifyShaderEditor.SaturateNode;69;-948.7165,143.1696;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SinOpNode;1;-1307.325,-125.0325;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;68;166.4454,610.3607;Inherit;False;Property;_WaveIntensity;WaveIntensity;1;0;Create;True;0;0;0;False;0;False;0.5;0.38;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.NoiseGeneratorNode;56;-765.0349,489.3379;Inherit;True;Simple;True;False;2;0;FLOAT2;0,0;False;1;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;68;166.4454,610.3607;Inherit;False;Property;_WaveIntensity;WaveIntensity;1;0;Create;True;0;0;0;False;0;False;0.5;0.5;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;70;275.9135,-180.9886;Inherit;False;Property;_Tint;Tint;2;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;1,0,0.5376077,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;72;629.085,179.2414;Inherit;False;Property;_Smoothness;Smoothness;4;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;71;605.085,96.24142;Inherit;False;Property;_Metallic;Metallic;3;0;Create;True;0;0;0;False;0;False;0;0;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SaturateNode;69;-948.7165,143.1696;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.ColorNode;70;165.4135,-192.6886;Inherit;False;Property;_Tint;Tint;2;1;[HDR];Create;True;0;0;0;False;0;False;0,0,0,0;0.1749774,0.1462264,1,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SinOpNode;1;-1307.325,-125.0325;Inherit;True;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;71;689.5847,204.1415;Inherit;False;Property;_Metallic;Metallic;4;0;Create;True;0;0;0;False;0;False;0;0.306;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;73;419.0544,7.223724;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;23;548.2185,364.9507;Inherit;True;5;5;0;FLOAT3;0,0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;1;FLOAT3;0
-Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;979.1699,84.09922;Float;False;True;-1;6;ASEMaterialInspector;0;0;Standard;FlagShader;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;False;-1;0;False;-1;False;0;False;-1;0;False;-1;False;0;Opaque;0.5;True;True;0;False;Opaque;;Geometry;ForwardOnly;14;all;True;True;True;True;0;False;-1;False;0;False;-1;255;False;-1;255;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;False;2;2;7.06;25;True;1;True;0;0;False;-1;0;False;-1;0;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;-1;-1;-1;2;0;False;0;0;False;-1;-1;0;False;-1;0;0;0;False;0.1;False;-1;0;False;-1;False;16;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
+Node;AmplifyShaderEditor.RangedFloatNode;72;713.5847,287.1412;Inherit;False;Property;_Smoothness;Smoothness;5;0;Create;True;0;0;0;False;0;False;0;0.229;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.StandardSurfaceOutputNode;0;979.1699,84.09922;Float;False;True;-1;6;ASEMaterialInspector;0;0;Standard;FlagShader;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;Back;0;False;-1;0;False;-1;False;0;False;-1;0;False;-1;False;0;Opaque;0.5;True;True;0;False;Opaque;;Geometry;ForwardOnly;14;all;True;True;True;True;0;False;-1;False;0;False;-1;255;False;-1;255;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;-1;False;2;2;7.06;25;True;1;True;0;0;False;-1;0;False;-1;0;0;False;-1;0;False;-1;0;False;-1;0;False;-1;0;False;0;0,0,0,0;VertexOffset;True;False;Cylindrical;False;Relative;0;;-1;-1;-1;-1;0;False;0;0;False;-1;-1;0;False;-1;0;0;0;False;0.1;False;-1;0;False;-1;False;16;0;FLOAT3;0,0,0;False;1;FLOAT3;0,0,0;False;2;FLOAT3;0,0,0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT3;0,0,0;False;7;FLOAT3;0,0,0;False;8;FLOAT;0;False;9;FLOAT;0;False;10;FLOAT;0;False;13;FLOAT3;0,0,0;False;11;FLOAT3;0,0,0;False;12;FLOAT3;0,0,0;False;14;FLOAT4;0,0,0,0;False;15;FLOAT3;0,0,0;False;0
 WireConnection;13;0;7;0
 WireConnection;8;0;7;1
 WireConnection;8;1;9;0
 WireConnection;2;0;3;0
 WireConnection;14;0;13;0
-WireConnection;15;0;14;0
+WireConnection;65;0;75;0
 WireConnection;11;0;2;0
 WireConnection;11;1;8;0
 WireConnection;66;0;64;0
 WireConnection;66;1;65;0
-WireConnection;69;0;15;0
-WireConnection;1;0;11;0
+WireConnection;15;0;14;0
 WireConnection;56;0;66;0
 WireConnection;56;1;59;0
+WireConnection;69;0;15;0
+WireConnection;1;0;11;0
+WireConnection;73;0;70;0
+WireConnection;73;1;74;0
 WireConnection;23;0;16;0
 WireConnection;23;1;1;0
 WireConnection;23;2;69;0
 WireConnection;23;3;56;0
 WireConnection;23;4;68;0
 WireConnection;0;0;70;0
+WireConnection;0;2;73;0
 WireConnection;0;3;71;0
 WireConnection;0;4;72;0
 WireConnection;0;11;23;0
 ASEEND*/
-//CHKSM=532FB5AF839E8A5B9809E00E4DD2BD49B5828F0D
+//CHKSM=2204E781C8480B37DD50CD41124A2E6471B2BA8E

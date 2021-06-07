@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a79b01ea5641d4aa6daa2e23605641, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
   intensity:
     overrideState: 1
-    value: 7.73
+    value: 9.88
   threshold:
     overrideState: 1
-    value: 1.26
+    value: 0.81
   softKnee:
     overrideState: 0
     value: 0.5

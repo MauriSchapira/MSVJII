@@ -18,7 +18,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 15.79
+    value: 4.63
   threshold:
     overrideState: 1
     value: 1
@@ -65,13 +65,13 @@ MonoBehaviour:
     value: 1
   _StepLevel:
     overrideState: 1
-    value: 0.26
+    value: 0.8
   _GrayBlackBalance:
     overrideState: 1
-    value: 0.48
+    value: -0.1
   _Tint:
     overrideState: 1
-    value: {r: 0.106075056, g: 0.023584902, b: 1, a: 0}
+    value: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
