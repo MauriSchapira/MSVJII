@@ -24,8 +24,8 @@ public class WindObject : MonoBehaviour
     private float _timeToStartBlowing;
     private float _timeToStopBlowing;
 
-    [SerializeField] private GameObject particleSys1;
-    [SerializeField] private GameObject particleSys2;
+    [SerializeField] private ParticleSystem particleSys1;
+    [SerializeField] private ParticleSystem particleSys2;
     public float WindForce => windForce;
 
     [SerializeField] private float windForceToUpDirection;
@@ -78,8 +78,19 @@ public class WindObject : MonoBehaviour
         windCollider.enabled = newState;
 
         //Activate or deactive wind particles
-        particleSys1.SetActive(newState);
-        particleSys2.SetActive(newState);
+
+        if (newState == true)
+        {
+            particleSys1.Play();
+            particleSys2.Play();
+        }
+        else
+        {
+            particleSys1.Stop();
+            particleSys2.Stop();
+        }
+
+      
     }
 
 
