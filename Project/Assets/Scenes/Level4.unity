@@ -1030,7 +1030,7 @@ PrefabInstance:
     - target: {fileID: 402929881678540349, guid: 9345039d8e908644dafb60325c2b12be,
         type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 1.7782341
+      value: 1.7777778
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9345039d8e908644dafb60325c2b12be, type: 3}
@@ -1974,6 +1974,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 4886569606034f846b58723b2257fd8b, type: 2}
+    - target: {fileID: 9184276653204966232, guid: e5374f72e88589045844a529c76d79fe,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.517
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5374f72e88589045844a529c76d79fe, type: 3}
 --- !u!4 &2086482715 stripped

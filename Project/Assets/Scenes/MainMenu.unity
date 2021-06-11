@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.33333334}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2071,7 +2071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9339623, g: 0.7931081, b: 0.5594963, a: 0.41960785}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2450,7 +2450,7 @@ MonoBehaviour:
   m_text: 'W/A/S/D | Arrows => Cambia el angulo de disparo.
 
     LeftMouseButton => Confirma el angulo y muestra selector de fuerza; Se aprieta
-    devuelta para confirmar fuerza y golpear la pelota.
+    de vuelta para confirmar fuerza y golpear la pelota.
 
     RightMouseButton => Permite controlar la camara en una orbita alrededor de la
     pelota; Permite cancelar la seleccion del angulo.
@@ -2505,7 +2505,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 482
+  m_firstOverflowCharacterIndex: 483
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2529,10 +2529,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1589691842}
-    characterCount: 507
+    characterCount: 508
     spriteCount: 0
-    spaceCount: 79
-    wordCount: 78
+    spaceCount: 80
+    wordCount: 79
     linkCount: 0
     lineCount: 10
     pageCount: 1
