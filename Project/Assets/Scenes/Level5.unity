@@ -1102,6 +1102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingAngle: 0
   maxStrokes: 17
+  uiArrowYOffset: 0.2
   hitArrow: {fileID: 445034228}
   angleChangeSpeed: 100
   strikeFillSpeed: 15
@@ -1224,6 +1225,16 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.14
       objectReference: {fileID: 0}
+    - target: {fileID: 2005281341780404725, guid: 6d64b9d111f860546b6643971b898b34,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cf59c194d665a7d4589fdeb7d8bb902f, type: 2}
+    - target: {fileID: 7743864508146711423, guid: 6d64b9d111f860546b6643971b898b34,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cf59c194d665a7d4589fdeb7d8bb902f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d64b9d111f860546b6643971b898b34, type: 3}
 --- !u!4 &445034227 stripped
@@ -1386,6 +1397,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 127660422}
+    - target: {fileID: 402929881678540339, guid: 9345039d8e908644dafb60325c2b12be,
+        type: 3}
+      propertyPath: distanceMin
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9345039d8e908644dafb60325c2b12be, type: 3}
 --- !u!4 &747223806 stripped

@@ -17,6 +17,8 @@ public class StrokeManager : MonoBehaviour
     private Ball ball;
 
     [SerializeField] private int maxStrokes;
+
+    [SerializeField] private float uiArrowYOffset;
     
     private Rigidbody playerBallRB;
   
@@ -193,7 +195,7 @@ public class StrokeManager : MonoBehaviour
     {
         hitArrow.SetActive(isEnabled);
         //ui.EnableDisableArrow(isEnabled);
-        hitArrow.transform.position = playerBallRB.transform.position;
+        hitArrow.transform.position = playerBallRB.transform.position + new Vector3 (0,uiArrowYOffset,0);
     }
 
 

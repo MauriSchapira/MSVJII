@@ -707,6 +707,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingAngle: 0
   maxStrokes: 17
+  uiArrowYOffset: 0
   hitArrow: {fileID: 1485183559}
   angleChangeSpeed: 100
   strikeFillSpeed: 15
@@ -1636,6 +1637,11 @@ PrefabInstance:
         type: 3}
       propertyPath: cameraFollowSmoothness
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 402929881678540339, guid: 9345039d8e908644dafb60325c2b12be,
+        type: 3}
+      propertyPath: distanceMin
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9345039d8e908644dafb60325c2b12be, type: 3}
