@@ -78,7 +78,7 @@ Material:
     - _WaveSpeedMultiplier: 2
     - _Wavelenght: 5.05
     - _Wavespeed: 1.78
-    - __dirty: 0
+    - __dirty: 1
     m_Colors:
     - _BigNormalSpeed: {r: 0.03, g: -0.04, b: 0, a: 0}
     - _CrestColor: {r: 0.05900679, g: 0.700028, b: 0.9622642, a: 0}
