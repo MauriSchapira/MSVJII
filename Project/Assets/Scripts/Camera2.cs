@@ -63,6 +63,7 @@ public class Camera2 : MonoBehaviour {
  
             distance = Mathf.Clamp(distance - Input.GetAxis("Mouse ScrollWheel")*5, distanceMin, distanceMax);
  
+            
             RaycastHit hit;
             if (Physics.Linecast (target.position, transform.position, out hit)) 
             {

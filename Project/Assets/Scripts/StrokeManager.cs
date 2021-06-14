@@ -30,12 +30,13 @@ public class StrokeManager : MonoBehaviour
         protected set
         {
             strokeAngle = value;
-            ui.ChangeArrowAngle(strokeAngle,Camera.main.transform.rotation.eulerAngles.y);
+            hitArrow.transform.rotation = Quaternion.Euler (0,strokeAngle + 180,0);
+            //ui.ChangeArrowAngle(strokeAngle,Camera.main.transform.rotation.eulerAngles.y);
         }
         
     }
 
-    /*[SerializeField] private GameObject hitArrow;*/
+    [SerializeField] private GameObject hitArrow;
 
     public float StrokeForce { get; protected set; }
     public float StrokeForcePerc { get { return StrokeForce / (MaxStrokeForce * currentGolfClub.GeneralStrength); } }
@@ -190,8 +191,9 @@ public class StrokeManager : MonoBehaviour
 
     private void EnableArrow(bool isEnabled)
     {
-        //hitArrow.SetActive(isEnabled);
-        ui.EnableDisableArrow(isEnabled);
+        hitArrow.SetActive(isEnabled);
+        //ui.EnableDisableArrow(isEnabled);
+        hitArrow.transform.position = playerBallRB.transform.position;
     }
 
 

@@ -99,6 +99,7 @@ public class MainMenuManager : MonoBehaviour
                }
                Application.Quit();
                return;
+
            default: return;
         } 
     }

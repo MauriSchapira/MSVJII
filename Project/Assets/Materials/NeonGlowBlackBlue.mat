@@ -33,13 +33,14 @@ Material:
     - _ColorIntensity: 1.52
     - _DetailColorIntensity: 0
     - _FresnelBias: 0
+    - _FresnelInfluence: 1
     - _FresnelPower: 5.19
     - _FresnelScale: 0.06
     - _Metallic: 0.2
     - _OutlineWidth: 0
     - _SinTimeScale: 0.4
     - _Smoothness: 0.62
-    - _TimeScale: 0.01
+    - _TimeScale: 0.46
     - _TimeScale1: 0.1
     - _TransAmbient: 0.2
     - _TransDirect: 1
@@ -52,4 +53,4 @@ Material:
     m_Colors:
     - _DetailMoveDir: {r: 0, g: 0, b: 0, a: 0}
     - _DetailTextureTiling: {r: 0, g: 0, b: 0, a: 0}
-    - _Tint: {r: 0, g: 0.3137255, b: 0.83137256, a: 0}
+    - _Tint: {r: 0, g: 0.9865292, b: 1.1486983, a: 0}

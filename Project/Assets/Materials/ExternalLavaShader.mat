@@ -44,9 +44,10 @@ Material:
     - _EmissionIntensity: 0.09
     - _Float0: 8.77
     - _Float1: 0.53
-    - _LavaMoveScale: 0.21
-    - _NoiseScale: 5.72
-    - _OriginalColorIntensity: 0.031
+    - _LavaMoveScale: 0.15
+    - _LavaSpotsFalloff: 1.25
+    - _NoiseScale: 10.66
+    - _OriginalColorIntensity: 0
     - _Smoothness: 0.86
     - _TimeScale: 1
     - _TransAmbient: 0.2
@@ -59,6 +60,6 @@ Material:
     - __dirty: 0
     m_Colors:
     - _Color0: {r: 0.6698113, g: 0.16113384, b: 0.16113384, a: 0}
-    - _EmissionColor: {r: 2, g: 0.0627451, b: 0, a: 0}
+    - _EmissionColor: {r: 2.9960785, g: 0.09411765, b: 0, a: 0}
     - _GlowColor: {r: 1, g: 1, b: 1, a: 0}
     - _TextureTiling: {r: 50, g: 50, b: 0, a: 0}
