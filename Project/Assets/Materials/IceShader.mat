@@ -55,7 +55,7 @@ Material:
     - _TessMin: 10
     - _TessValue: 5.2
     - _TopBallMaxBloat: 0.043068126
-    - __dirty: 1
+    - __dirty: 0
     - _t: 0.35
     m_Colors:
     - _IceTint: {r: 0, g: 0, b: 0, a: 0}

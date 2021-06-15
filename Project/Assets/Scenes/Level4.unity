@@ -314,7 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingAngle: 90
   maxStrokes: 17
-  uiArrowYOffset: 0
+  uiArrowYOffset: 0.2
   hitArrow: {fileID: 8296172668824521209}
   angleChangeSpeed: 100
   strikeFillSpeed: 15
@@ -1822,6 +1822,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ec02a508711a6b148a66c135df2daf25, type: 2}
+    - target: {fileID: 8540708105924114813, guid: e5374f72e88589045844a529c76d79fe,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06f96c035bc62464bb02658ee45d7fe7, type: 2}
+    - target: {fileID: 8540708105924114813, guid: e5374f72e88589045844a529c76d79fe,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 06f96c035bc62464bb02658ee45d7fe7, type: 2}
     - target: {fileID: 8540708105897875238, guid: e5374f72e88589045844a529c76d79fe,
         type: 3}
       propertyPath: m_Materials.Array.data[1]

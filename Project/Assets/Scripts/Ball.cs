@@ -26,6 +26,8 @@ public class Ball : MonoBehaviour
         }
     }
 
+    [SerializeField] private PhysicMaterial physicMat;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public class Ball : MonoBehaviour
         rb.maxAngularVelocity = Mathf.Infinity;
         camTransManager = FindObjectOfType<CameraTransitionManager>();
         SetKnownGoodPosition(transform.position);
-        
+        physicMat = GetComponent<SphereCollider>().material;      
     }
 
     
@@ -72,7 +74,25 @@ public class Ball : MonoBehaviour
         Dissapearing = false;
     }
 
-  private void ResetVelocities()
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Floor"))
+        {
+            physicMat.bounceCombine = PhysicMaterialCombine.Maximum;
+            print("Maximum");
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag("Floor"))
+        {
+            physicMat.bounceCombine = PhysicMaterialCombine.Minimum;
+            print("Minimum");
+        }
+    }
+
+    private void ResetVelocities()
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;

@@ -51,6 +51,7 @@ public class WindObject : MonoBehaviour
 
             if (_timeToStopBlowing <= 0)
             {
+                _timeToStopBlowing = timeToStopBlowing;
                 StartBlowing(false);
             }
             return;
@@ -62,6 +63,7 @@ public class WindObject : MonoBehaviour
 
         if (_timeToStartBlowing <= 0)
         {
+            _timeToStartBlowing = timeToStartBlowing;
             StartBlowing(true);            
         }        
     }
@@ -83,11 +85,13 @@ public class WindObject : MonoBehaviour
         {
             particleSys1.Play();
             particleSys2.Play();
+            print("playing particles");
         }
         else
         {
             particleSys1.Stop();
             particleSys2.Stop();
+            print("Stop particles");
         }
 
       
@@ -98,7 +102,6 @@ public class WindObject : MonoBehaviour
     //Wind from XZ plane
     private void OnTriggerStay(Collider other)
     {
-
         other.attachedRigidbody.AddForce(WindDirection.x * transform.right * windForce + WindDirection.z * transform.forward * windForce, ForceMode.Force);
     }
 

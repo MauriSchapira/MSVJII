@@ -783,7 +783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingAngle: 0
   maxStrokes: 17
-  uiArrowYOffset: 0
+  uiArrowYOffset: 0.2
   hitArrow: {fileID: 1017220936}
   angleChangeSpeed: 100
   strikeFillSpeed: 15
