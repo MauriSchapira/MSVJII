@@ -7,5 +7,6 @@
         "**/.DS_Store": true,
         "**/*.meta": true
     },
-    "explorerExclude.backup": null
+    "explorerExclude.backup": null,
+    "eppz-code.disableAnalytics": true
 }

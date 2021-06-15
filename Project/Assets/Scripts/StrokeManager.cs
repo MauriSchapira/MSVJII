@@ -8,18 +8,19 @@ public class StrokeManager : MonoBehaviour
     public enum StartingAngle { ZForward = 0, XForward = 90, ZBackward = 180, XBackward = 270 };
 
     [Tooltip("A que direccion apunta al principio")]
-    public StartingAngle startingAngle; 
+    public StartingAngle startingAngle;
     public StrokeState StrokeMode { get; protected set; }
 
     public delegate void MaxStrokesReached();
     public MaxStrokesReached OnMaxStrokesReached;
 
-    private Ball ball;
+
 
     [SerializeField] private int maxStrokes;
-    
+
     private Rigidbody playerBallRB;
-  
+    public Ball ball;
+
     private float strokeAngle;
     public float StrokeAngle
     {
@@ -30,9 +31,9 @@ public class StrokeManager : MonoBehaviour
         protected set
         {
             strokeAngle = value;
-            ui.ChangeArrowAngle(strokeAngle,Camera.main.transform.rotation.eulerAngles.y);
+            ui.ChangeArrowAngle(strokeAngle, Camera.main.transform.rotation.eulerAngles.y);
         }
-        
+
     }
 
     /*[SerializeField] private GameObject hitArrow;*/
@@ -67,7 +68,7 @@ public class StrokeManager : MonoBehaviour
 
     void Start()
     {
-        FindPlayerBall();       
+        FindPlayerBall();
         StrokeCount = 0;
         StrokeAngle = (float)startingAngle;
         ChangeState(StrokeState.Aiming);
@@ -80,7 +81,7 @@ public class StrokeManager : MonoBehaviour
     {
 
         GameObject go = GameObject.FindGameObjectWithTag("Player");
-        ball = go.GetComponent <Ball>();
+        ball = go.GetComponent<Ball>();
         playerBallRB = go.GetComponent<Rigidbody>();
     }
 
@@ -182,6 +183,7 @@ public class StrokeManager : MonoBehaviour
     {
         Vector3 forceVec = StrokeForce * Vector3.forward + StrokeForce * Vector3.up * currentGolfClub.VerticalFactorStrength;
         playerBallRB.AddForce(Quaternion.Euler(0, StrokeAngle, 0) * forceVec, ForceMode.Impulse);
+        ball.lastFrameVelocity = Quaternion.Euler(0, StrokeAngle, 0) * forceVec;
         StrokeForce = 0;
         StrokeCount++;
         ui.UpdateStrokes(StrokeCount);
