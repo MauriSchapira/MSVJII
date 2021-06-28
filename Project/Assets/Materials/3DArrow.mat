@@ -21,7 +21,7 @@ Material:
     m_TexEnvs: []
     m_Floats:
     - _DepthFadeDistance: 0.07
-    - _LineAmount: 28.64
+    - _LineAmount: 96.59
     - _LineMoveSpeed: 13.2
     - _TopMaskFalloff: 4.77
     - _TopMaskIntensity: 4.16
